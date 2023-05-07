@@ -22,6 +22,10 @@ The ERD provided here gives an overview of the full project vision, this has bee
 
 ### Custom User Model
 
+The django documentation on customising the base user model is available [here](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model) as well as a full guide from [Very Academy](https://www.youtube.com/watch?v=Ae7nc1EGv-A)
+
+This custom user model negates the need for a separate Profile model and means one less linkage between models to account for. 
+
 ## Credits
 
 -   I Followed the DRF documentation [here](https://www.django-rest-framework.org/tutorial/quickstart/#project-setup) as a reminder of the steps needed to start the project.
