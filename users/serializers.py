@@ -2,6 +2,16 @@ from rest_framework import serializers
 from django.core.exceptions import ValidationError as DjangoValidationError
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
+from dj_rest_auth.serializers import UserDetailsSerializer
+from django.contrib.auth import get_user_model
+CustomUser = get_user_model()
+
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'email',
+                  'firstname', 'lastname', 'profilepic',)
 
 
 class CustomUserSerializer(serializers.Serializer):
