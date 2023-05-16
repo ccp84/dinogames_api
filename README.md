@@ -48,6 +48,32 @@ So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedoc
 | ----------------- | --------------- |
 | Create Game model and serializers. Add views for create, update, delete, listview and detailed view. Create permissions for post owner. Expose endpoints for create, edit and delete game. Add search and filter for game features. | ![sprint2](/documentation/readme/sprint2.png) |
 
+### The Game Model
+
+This model will hold all member game instances. In a change from the planned ERD to make number of players more searchable I have used 2 separate fields for min and max players. To help with slimlining the vast range of game play times that could possibly be returned, this field is linked to choices for less than 5 minutes, 5-10, 10-20, 20-40, 40-90 and then anything over an hour and a half. Again these fields will make the games library easier to search and filter for members. 
+
+### Viewing the library and creating a listing
+
+All authenticated members will be able to view the full list of games in the library as well as add their own. For this a single endpoint can be created using the generic `ListCreate` view with the permission class of `IsAuthenticated`. 
+The serializer extends the standard model serializer class and imports the Game model and all model fields for serialization. 
+
+### Listing games owned by a member
+
+A second list view is included in the urls to filter owned games only. This endpoint uses a filtered queryset.
+```python
+    def get_queryset(self):
+        """
+        Override the standard query set and filter
+        """
+        user = self.request.user
+        return Game.objects.filter(owner=user)
+```
+
+### Editing and deleting a game listing
+
+This endpoint is restricted to the owner of a game. A custom permission class was needed as DRF doesnt include this level of detail - I have used the example provided in the DRF documentation as a robust and working [example](https://www.django-rest-framework.org/api-guide/permissions/#examples)
+
+
 ## Credits
 
 ### Documentation and additonal tutorials
@@ -56,9 +82,11 @@ So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedoc
 * To create the custom user model and user management I used both the [django documentation](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#a-full-example) as well as tutorials from [Very Academy](https://www.youtube.com/watch?v=Ae7nc1EGv-A)
 * For use of dj-rest-auth I followed the documentation [here](https://dj-rest-auth.readthedocs.io/en/latest/installation.html)
 
+
 ### Code used from other sources
 
 * Custom serializer built from the base code of the rest-auth repository [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
+* Custom permission class `IsOwnerOrReadOnly` taken from DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples)
 
 ### Media and images
 
