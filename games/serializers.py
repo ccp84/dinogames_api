@@ -3,7 +3,6 @@ from .models import Game
 
 
 class GameSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Game
