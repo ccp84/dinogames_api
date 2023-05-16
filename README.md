@@ -18,9 +18,9 @@ The ERD provided here gives an overview of the full project vision, this has bee
 
 ## Milestone 1 - User Accounts
 
-| Tasks This Sprint                                        | Sprint Overview                                           |
-| -------------------------------------------------------- | --------------------------------------------------------- |
-| Project Setup, Account creation, Logging in, Logging out | ![sprint 1 screenshot](/documentation/readme/sprint1.png) |
+| Tasks This Sprint | Sprint Overview|
+| ----------------- | -------------- |
+| Project Setup, Create Custom user model and serializers, make signup endpoint available to all users, set up JWT, make login endpoint available to all users, make token refresh endpoint available to authenticated users, make logout endpoint available to deny further token refreshes | ![sprint 1 screenshot](/documentation/readme/sprint1.png) |
 
 ### Custom User Model
 
@@ -42,18 +42,23 @@ So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedoc
 
 ![rest auth custom serializer](/documentation/readme/rest_auth_custom_register.png)
 
+## Milestone 2 - Game Library
+
+| Tasks this sprint | Sprint Overview |
+| ----------------- | --------------- |
+| Create Game model and serializers. Add views for create, update, delete, listview and detailed view. Create permissions for post owner. Expose endpoints for create, edit and delete game. Add search and filter for game features. | ![sprint2](/documentation/readme/sprint2.png) |
+
 ## Credits
 
 ### Documentation and additonal tutorials
 
--   I Followed the DRF documentation [here](https://www.django-rest-framework.org/tutorial/quickstart/#project-setup) as a reminder of the steps needed to start the project.
--   To create the custom user model and user management I used both the [django documentation](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#a-full-example) as well as tutorials from [Very Academy](https://www.youtube.com/watch?v=Ae7nc1EGv-A)
-
-*   For use of dj-rest-auth I followed the documentation [here](https://dj-rest-auth.readthedocs.io/en/latest/installation.html)
+* I Followed the DRF documentation [here](https://www.django-rest-framework.org/tutorial/quickstart/#project-setup) as a reminder of the steps needed to start the project.
+* To create the custom user model and user management I used both the [django documentation](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#a-full-example) as well as tutorials from [Very Academy](https://www.youtube.com/watch?v=Ae7nc1EGv-A)
+* For use of dj-rest-auth I followed the documentation [here](https://dj-rest-auth.readthedocs.io/en/latest/installation.html)
 
 ### Code used from other sources
 
--   Custom serializer built from the base code of the rest-auth repository [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
+* Custom serializer built from the base code of the rest-auth repository [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
 
 ### Media and images
 
