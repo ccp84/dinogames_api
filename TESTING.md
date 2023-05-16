@@ -2,9 +2,14 @@
 
 ## Postman Checking Availability of Endpoints
 
-| Endpoint          | Expected Result                                                          |                                                                     |
-| ----------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| User Registration | 201_Created. Returns user details added to the system                    | ![screenshot](/documentation/testing/postman_testingregister.png)   |
-| Login             | 200 OK. Returns access token and user profile details                    | ![screenshot](/documentation/testing/postman_testinglogin.png)      |
-| Logout            | 200 OK. Removes access and refresh tokens from cookie, no data returned. | ![screenshot](/documentation/testing/postman_testinglogout.png)     |
-| User detail       | 200 OK. Returns user profile detail for id given.                        | ![screenshot](/documentation/testing/postman_testinguserdetail.png) |
+| Endpoint| Expected Result |         |
+| ------- | --------------- | ------- |
+| User Registration | 201_Created. Returns user details added to the system| ![screenshot](/documentation/testing/postman_testingregister.png)|
+| Login | 200 OK. Returns access token and user profile details| ![screenshot](/documentation/testing/postman_testinglogin.png)|
+| Logout | 200 OK. Removes access and refresh tokens from cookie, no data returned.| ![screenshot](/documentation/testing/postman_testinglogout.png)|
+| User detail | 200 OK. Returns user profile detail for id given.| ![screenshot](/documentation/testing/postman_testinguserdetail.png)|
+| Token refresh | 200 OK Returns new access token| ![screenshot](/documentation/testing/postman_testing_tokenrefresh.png)|
+| Game List | Logged out - 403 Not Authenticated| ![screenshot](/documentation/testing/postman_testinggamelist_loggedout.png)|
+| Game List | Logged in - 200 OK| ![screenshot](/documentation/testing/postman_testinggamelist_loggedin.png)|
+| Game Create | Logged out - 403 Not Authenticated| ![screenshot](/documentation/testing/postman_testinggamecreate_loggedout.png)|
+| Game Create | Logged in - 201 Created| ![screenshot](/documentation/testing/postman_testinggamecreate_loggedin.png)|
