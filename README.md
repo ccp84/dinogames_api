@@ -72,6 +72,11 @@ A second list view is included in the urls to filter owned games only. This endp
 ### Editing and deleting a game listing
 
 This endpoint is restricted to the owner of a game. A custom permission class was needed as DRF doesnt include this level of detail - I have used the example provided in the DRF documentation as a robust and working [example](https://www.django-rest-framework.org/api-guide/permissions/#examples)
+It makes use of the generic `RetrieveUpdateDestroyAPIView`. Filtering the query set is not necessary as authenticated members are able to view game details already. The custom permission class ensures that only the game owner can make any changes to the listing and so there is no need to make this view any more complicated. 
+
+### Filtering the games library
+
+## The Reviews Model
 
 
 ## Credits
