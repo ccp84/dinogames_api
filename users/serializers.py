@@ -70,6 +70,7 @@ class CustomUserSerializer(serializers.Serializer):
                     detail=serializers.as_serializer_error(exc)
                 )
         user.save()
+        UserDetailsSerializer().update(user, self.validated_data)
         self.custom_signup(request, user)
         setup_user_email(request, user, [])
         return user
