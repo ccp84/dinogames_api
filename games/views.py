@@ -6,7 +6,7 @@ from dinogames.permissions import IsOwnerOrReadOnly
 
 
 class GameList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = GameSerializer
     queryset = Game.objects.all()
 
