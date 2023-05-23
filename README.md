@@ -2,7 +2,8 @@
 
 ## Concept
 
-My local boardgames group meet each week with members bringing along their own games to share with the group. This can lead to sometimes a limited selection of games on offer, or not knowing which games other members have that the group would like to play. The Dinosaur Games Library app provides a solution to this by allowing members of the group to list the games that they own and are happy to share in an online library available for other members to view and search. Requests could then be made ahead of social events for particular games that the group would like to play to be brought along that week. Additional features of the app would allow admin users to advertise the group to visitors to the site and publicise social events to gain a wider membership, add important group updates to the front page as these can sometimes be missed in the Facebook group, and allow for an 'add to social' button for games to be automatically requested via the app at a particular social event.
+As a boardgame enthusiast, it can be hard to decide which game to try next. The Dinosaur Games Library will be a resource for the tabletop games community to add games that they have played and enjoyed to share their views with other gamers. Registered members will be able to post new games that they have found with details and reviews, visitors to the site will be able to view the library to find recommendations for games that they might enjoy playing. Administrators of the site will be able to delete any games from the listings that become out of print or are found to be duplicates.
+In addition to the games listings, announcements could also be made by the admin team detailing social events for gaming meet ups and news for the tabletop gaming community. 
 
 ## Scope
 
@@ -46,7 +47,7 @@ So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedoc
 
 | Tasks this sprint | Sprint Overview |
 | ----------------- | --------------- |
-| Create Game model and serializers. Add views for create, update, delete, listview and detailed view. Create permissions for post owner. Expose endpoints for create, edit and delete game. Add search and filter for game features. | ![sprint2](/documentation/readme/sprint2.png) |
+| Create Game model and serializers. Add views for create and edit games, view all and view details. Delete view for administrators. | ![sprint2](/documentation/readme/sprint2.png) |
 
 ### The Game Model
 
@@ -54,25 +55,16 @@ This model will hold all member game instances. In a change from the planned ERD
 
 ### Viewing the library and creating a listing
 
-All authenticated members will be able to view the full list of games in the library as well as add their own. For this a single endpoint can be created using the generic `ListCreate` view with the permission class of `IsAuthenticated`. 
+All visitors will be able to view but make no changes to the full list of games in the library, authenticated members are able to add to the current list of games. For this a single endpoint can be created using the generic `ListCreate` view with the permission class of `IsAuthenticatedOrReadOnly`. 
 The serializer extends the standard model serializer class and imports the Game model and all model fields for serialization. 
 
-### Listing games owned by a member
+### Detailed view of games and editing as a member
 
-A second list view is included in the urls to filter owned games only. This endpoint uses a filtered queryset.
-```python
-    def get_queryset(self):
-        """
-        Override the standard query set and filter
-        """
-        user = self.request.user
-        return Game.objects.filter(owner=user)
-```
+This `RetrieveUpdate` endpoint can be accessed by all viewing the library to view a single record from the game table. The permission class of `IsAuthenticatedOrReadOnly` ensures that visitors can view the details they need safely whilst grating access to members to edit game data. As this is a community resource much like Wikipedia, updating of incorrect game details is available to all registered members of the library on a trust basis. 
 
-### Editing and deleting a game listing
+### Deleting a game as an administrator
 
-This endpoint is restricted to the owner of a game. A custom permission class was needed as DRF doesnt include this level of detail - I have used the example provided in the DRF documentation as a robust and working [example](https://www.django-rest-framework.org/api-guide/permissions/#examples)
-It makes use of the generic `RetrieveUpdateDestroyAPIView`. Filtering the query set is not necessary as authenticated members are able to view game details already. The custom permission class ensures that only the game owner can make any changes to the listing and so there is no need to make this view any more complicated. 
+Deletion of incorrectly added, duplicate and out of print games will be restricted to admin only. This `RetrieveUpdateDestroy` endpoint utilises the more robust permission class of `IsAdminUser` to ensure delete permissions are tightly controlled. 
 
 ### Filtering the games library
 
