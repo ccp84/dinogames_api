@@ -15,8 +15,8 @@ class Game(models.Model):
         (40, "40-90"),
         (90, "90+")
     )
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
+    owner = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
+    title = models.CharField(max_length=100, unique=True)
     tags = models.TextField(blank=True)
     minplayers = models.IntegerField(default=1)
     maxplayers = models.IntegerField(default=4)
