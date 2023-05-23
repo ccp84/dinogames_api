@@ -15,7 +15,6 @@ class Game(models.Model):
         (40, "40-90"),
         (90, "90+")
     )
-    owner = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
     title = models.CharField(max_length=100, unique=True)
     tags = models.TextField(blank=True)
     minplayers = models.IntegerField(default=1)
@@ -27,4 +26,4 @@ class Game(models.Model):
         ordering = ["title"]
 
     def __str__(self):
-        return f'{self.owner} {self.title}'
+        return {self.title}

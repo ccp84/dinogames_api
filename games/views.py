@@ -10,23 +10,14 @@ class GameList(generics.ListCreateAPIView):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
 
-
-class OwnerList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+class GameDetail(generics.RetrieveUpdateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = GameSerializer
-
-    def get_queryset(self):
-        """
-        Override the standard query set and filter
-        """
-        user = self.request.user
-        return Game.objects.filter(owner=user)
+    queryset = Game.objects.all()
 
 
-class OwnerEdit(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+class GameEdit(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = GameSerializer
     queryset = Game.objects.all()
