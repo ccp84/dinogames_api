@@ -49,12 +49,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     I have followed the django documentation here to create this model:
     https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model
     """
+    ICON_CHOICES = (
+        ("puzzle-piece", "Puzzle"),
+        ("dice", "Dice"),
+        ("chess", "Chess"),
+        ("hat-wizard", "Wizard"),
+        ("book-skull", "Pirate"),
+    )
     username = models.CharField(max_length=100, unique=True)
     email = models.EmailField()
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     profilepic = models.ImageField(
         upload_to='profiles/', default='../defaultprofile_yqihgb.webp')
+    profileicon = models.CharField(
+        max_length=25, choices=ICON_CHOICES, default="dice")
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 

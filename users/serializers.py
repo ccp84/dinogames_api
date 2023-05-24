@@ -11,7 +11,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('id', 'username', 'email',
-                  'firstname', 'lastname', 'profilepic', 'is_staff')
+                  'firstname', 'lastname', 'profileicon', 'is_staff')
 
 
 class CustomUserSerializer(serializers.Serializer):
@@ -24,7 +24,8 @@ class CustomUserSerializer(serializers.Serializer):
     lastname = serializers.CharField(required=True)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
-    profilepic = serializers.ImageField(required=False, allow_null=True)
+    # profilepic = serializers.ImageField(required=False, allow_null=True)
+    profileicon = serializers.CharField(default="dice")
 
     def validate_username(self, username):
         username = get_adapter().clean_username(username)
@@ -53,7 +54,7 @@ class CustomUserSerializer(serializers.Serializer):
             'email': self.validated_data.get('email', ''),
             'firstname': self.validated_data.get('firstname', ''),
             'lastname': self.validated_data.get('lastname', ''),
-            'profilepic': self.validated_data.get('profilepic', '')
+            'profileicon': self.validated_data.get('profileicon', '')
         }
 
     def save(self, request):

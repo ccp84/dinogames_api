@@ -16,7 +16,7 @@ class UserAdminConfig(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'username', 'firstname', 'lastname',)}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
-        ('Personal', {'fields': ('profilepic',)}),
+        ('Personal', {'fields': ('profileicon',)}),
     )
     # fields available when adding a new user from the admin panel
     add_fieldsets = (
