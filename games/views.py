@@ -2,10 +2,9 @@ from rest_framework import generics, filters
 from .models import Game
 from .serializers import GameSerializer
 from rest_framework import permissions
-from dinogames.permissions import IsOwnerOrReadOnly
 
 
-class GameList(generics.ListCreateAPIView):
+class GameList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = GameSerializer
     queryset = Game.objects.all().order_by('-id')
@@ -26,8 +25,14 @@ class GameList(generics.ListCreateAPIView):
     ]
 
 
-class GameDetail(generics.RetrieveUpdateAPIView):
+class GameDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = GameSerializer
+    queryset = Game.objects.all()
+
+
+class GameCreate(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = GameSerializer
     queryset = Game.objects.all()
 

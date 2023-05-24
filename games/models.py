@@ -17,6 +17,7 @@ class Game(models.Model):
     )
     title = models.CharField(max_length=100, unique=True)
     tags = models.TextField(blank=True)
+    overview = models.TextField(blank=True)
     minplayers = models.IntegerField(default=1)
     maxplayers = models.IntegerField(default=4)
     playtime = models.IntegerField(
