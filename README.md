@@ -2,8 +2,7 @@
 
 ## Concept
 
-As a boardgame enthusiast, it can be hard to decide which game to try next. The Dinosaur Games Library will be a resource for the tabletop games community to add games that they have played and enjoyed to share their views with other gamers. Registered members will be able to post new games that they have found with details and reviews, visitors to the site will be able to view the library to find recommendations for games that they might enjoy playing. Administrators of the site will be able to delete any games from the listings that become out of print or are found to be duplicates.
-In addition to the games listings, announcements could also be made by the admin team detailing social events for gaming meet ups and news for the tabletop gaming community. 
+The Dinosaur Games Library operates to provide social events where members can come along and play library games with other members. The online library portal provides staff the ability to maintain an up to date list of the games available to be played at social nights, and keep members informed of the latest news and events for the group. Members are able to view and search the library, and review the games they have played providing a resource for other members and site visitors to look up new games they might want to play. All members and site visitors can also see the latest admin announcements for social events and news items about the library. 
 
 ## Scope
 
@@ -47,28 +46,68 @@ So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedoc
 
 | Tasks this sprint | Sprint Overview |
 | ----------------- | --------------- |
-| Create Game model and serializers. Add views for create and edit games, view all and view details. Delete view for administrators. | ![sprint2](/documentation/readme/sprint2.png) |
+| Create Game model and serializers. Add CreateList, RetrieveUpdateDestroy endpoints for admin and Listview endpoint for all. | ![sprint2](/documentation/readme/sprint2.png) |
 
 ### The Game Model
 
 This model will hold all member game instances. In a change from the planned ERD to make number of players more searchable I have used 2 separate fields for min and max players. To help with slimlining the vast range of game play times that could possibly be returned, this field is linked to choices for less than 5 minutes, 5-10, 10-20, 20-40, 40-90 and then anything over an hour and a half. Again these fields will make the games library easier to search and filter for members. 
 
-### Viewing the library and creating a listing
+### Viewing the library
 
-All visitors will be able to view but make no changes to the full list of games in the library, authenticated members are able to add to the current list of games. For this a single endpoint can be created using the generic `ListCreate` view with the permission class of `IsAuthenticatedOrReadOnly`. 
-The serializer extends the standard model serializer class and imports the Game model and all model fields for serialization. 
+All visitors will be able to view but make no changes to the full list of games in the library, authenticated members are able to add to the current list of games. For this a single endpoint can be created using the generic `List` view with the permission class of `IsAuthenticatedOrReadOnly`. 
+The serializer extends the standard model serializer class and imports the Game model and all model fields for serialization.
 
-### Detailed view of games and editing as a member
+### Detailed view of games
 
-This `RetrieveUpdate` endpoint can be accessed by all viewing the library to view a single record from the game table. The permission class of `IsAuthenticatedOrReadOnly` ensures that visitors can view the details they need safely whilst grating access to members to edit game data. As this is a community resource much like Wikipedia, updating of incorrect game details is available to all registered members of the library on a trust basis. 
+This `Retrieve` endpoint can be accessed by all viewing the library to view a single record from the game table. The permission class of `IsAuthenticatedOrReadOnly` is redundant really as this is a read only endpoint. 
 
-### Deleting a game as an administrator
+### Editing and deleting a game as an administrator
 
 Deletion of incorrectly added, duplicate and out of print games will be restricted to admin only. This `RetrieveUpdateDestroy` endpoint utilises the more robust permission class of `IsAdminUser` to ensure delete permissions are tightly controlled. 
 
 ### Filtering the games library
 
-## The Reviews Model
+Sorting:
+from rest_framework import generics, filters
+filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'id',
+        'title',
+        'maxplayers',
+        'minplayers',
+        'playtime',
+    ]
+
+searching:
+/games/?search=board
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'title',
+        'tags',
+    ]
+
+## Milestone 3 - Player Reviews
+
+| Tasks this sprint | Sprint Overview |
+| ----------------- | --------------- |
+| * Create Review model and serializer. * Add view for listing all reviews. * Add endpoint to create new reviews. * Add update and destroy endpoint for review owner. * Filter review list by member | ![sprint3](/documentation/readme/sprint3.png) |
+
+### The Review Model
+
+### Creating a review
+
+### Editing a review
+
+### Deleting a review
+
+### Listing all reviews for a game
+
+### Listing all reviews for a member
 
 
 ## Credits
