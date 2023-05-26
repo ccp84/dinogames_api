@@ -1,4 +1,5 @@
-from rest_framework import generics, filters
+from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Review
 from .serializers import ReviewSerializer, ReviewDetailSerializer
 from rest_framework import permissions
@@ -13,6 +14,8 @@ class ReviewList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ReviewSerializer
     queryset = Review.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['author', 'game']
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
