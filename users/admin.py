@@ -5,6 +5,9 @@ from django.forms import TextInput, Textarea
 
 
 class UserAdminConfig(UserAdmin):
+    """
+    Set out how user accounts are viewed and managed in the admin panel
+    """
     model = CustomUser
     # set available filter fields in admin panel
     search_fields = ('firstname', 'lastname', 'username')

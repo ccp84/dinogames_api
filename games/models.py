@@ -27,4 +27,4 @@ class Game(models.Model):
         ordering = ["title"]
 
     def __str__(self):
-        return {self.title}
+        return f'{self.title}'
