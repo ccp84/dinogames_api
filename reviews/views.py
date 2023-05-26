@@ -21,6 +21,14 @@ class ReviewList(generics.ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 
+class AuthorList(generics.ListAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        return Review.objects.filter(author=self.request.user)
+
+
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Read write delete endpoint for review author
