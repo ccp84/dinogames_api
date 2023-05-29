@@ -11,6 +11,8 @@ class ReviewSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
     is_author = serializers.SerializerMethodField()
     profileicon = serializers.ReadOnlyField(source='author.profileicon')
+    # https://www.django-rest-framework.org/api-guide/fields/#datetimefield
+    lastupdated = serializers.DateTimeField(format="%d-%m-%Y %H:%M")
 
     def get_is_author(self, obj):
         """
