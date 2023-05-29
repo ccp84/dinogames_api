@@ -106,9 +106,29 @@ searching:
 ### Deleting a review
 
 ### Listing all reviews for a game
-
+https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend
 ### Listing all reviews for a member
+https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend
 
+## Milestone 4 - Announcements
+
+| Tasks this sprint | Sprint Overview |
+| ----------------- | --------------- |
+| * Create Announcement model and serializer. * Create Category model. * Add view for listing all announcements. * Add admin only endpoint to create new announcements. * Add update and destroy endpoint for admin users. | ![sprint4](/documentation/readme/sprint4.png) |
+
+### The Announcement Model
+
+### The Category Model
+
+### Creating an announcement
+
+### Linking to a category
+
+### Viewing announcements
+
+### Filtering by category
+
+### Editing and deleting announcements
 
 ## Credits
 
@@ -117,7 +137,7 @@ searching:
 * I Followed the DRF documentation [here](https://www.django-rest-framework.org/tutorial/quickstart/#project-setup) as a reminder of the steps needed to start the project.
 * To create the custom user model and user management I used both the [django documentation](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#a-full-example) as well as tutorials from [Very Academy](https://www.youtube.com/watch?v=Ae7nc1EGv-A)
 * For use of dj-rest-auth I followed the documentation [here](https://dj-rest-auth.readthedocs.io/en/latest/installation.html)
-
+* Serializing date time field https://www.django-rest-framework.org/api-guide/fields/#datetimefield
 
 ### Code used from other sources
 
