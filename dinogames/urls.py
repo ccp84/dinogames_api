@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('games.urls')),
     path('', include('reviews.urls')),
+    path('', include('announcements.urls')),
 ]
