@@ -12,6 +12,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     is_author = serializers.SerializerMethodField()
     profileicon = serializers.ReadOnlyField(source='author.profileicon')
     lastupdated = serializers.SerializerMethodField()
+    game_title = serializers.ReadOnlyField(source='game.title')
 
     def get_is_author(self, obj):
         """
@@ -29,7 +30,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = [
-            'id', 'author', 'is_author', 'profileicon', 'game', 'content', 'lastupdated'
+            'id', 'author', 'is_author', 'profileicon', 'game', 'game_title', 'content', 'lastupdated'
         ]
 
 
