@@ -1,3 +1,4 @@
+from django.db.models import Count, Q
 from rest_framework import generics, filters
 from .models import Game
 from .serializers import GameSerializer
@@ -11,7 +12,13 @@ class GameList(generics.ListAPIView):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = GameSerializer
-    queryset = Game.objects.all().order_by('-id')
+    thumbsup = Count('ratings', filter=Q(
+        ratings__rating__exact=True), distinct=True)
+    thumbsdown = Count('ratings', filter=Q(
+        ratings__rating__exact=False), distinct=True)
+    queryset = Game.objects.annotate(
+        thumbsup=thumbsup).annotate(
+        thumbsdown=thumbsdown).order_by('-id')
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
@@ -36,7 +43,13 @@ class GameDetail(generics.RetrieveAPIView):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = GameSerializer
-    queryset = Game.objects.all()
+    thumbsup = Count('ratings', filter=Q(
+        ratings__rating__exact=True), distinct=True)
+    thumbsdown = Count('ratings', filter=Q(
+        ratings__rating__exact=False), distinct=True)
+    queryset = Game.objects.annotate(
+        thumbsup=thumbsup).annotate(
+        thumbsdown=thumbsdown).order_by('-id')
 
 
 class GameCreate(generics.ListCreateAPIView):
