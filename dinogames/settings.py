@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'games',
     'reviews',
     'announcements',
+    'ratings',
 ]
 
 SITE_ID = 1
