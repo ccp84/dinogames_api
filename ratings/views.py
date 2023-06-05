@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Rating
 from .serializers import RatingSerializer
@@ -14,8 +14,12 @@ class RatingList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = RatingSerializer
     queryset = Rating.objects.all()
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['game']
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter,]
+    filterset_fields = ['game', 'author']
+
+    ordering_fields = [
+        'game'
+    ]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
