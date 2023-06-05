@@ -130,6 +130,20 @@ https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend
 
 ### Editing and deleting announcements
 
+## Milestone 5 - Ratings
+
+| Tasks this sprint | Sprint Overview |
+| ----------------- | --------------- |
+| * Create Ratings model and serializer. * Add authenticated view for creating ratings. * Add view for listing all ratings for each game. * Add update view for author of rating. | ![sprint5](/documentation/readme/sprint5.png) |
+
+### The Ratings model
+
+### Adding thumbs up or thumbs down
+
+### Viewing all ratings for a game
+
+### Editing a rating
+
 ## Credits
 
 ### Documentation and additonal tutorials
