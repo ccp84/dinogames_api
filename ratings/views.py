@@ -25,9 +25,9 @@ class RatingList(generics.ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 
-class RatingDetail(generics.RetrieveUpdateAPIView):
+class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Read and edit endpoint for authenticated members
+    Read edit and destroy endpoint for authenticated members
     Instance owner can ammend their rating
     """
     permission_classes = [IsOwnerOrReadOnly]
