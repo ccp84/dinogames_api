@@ -11,6 +11,7 @@ class GameSerializer(serializers.ModelSerializer):
     rating_value = serializers.SerializerMethodField()
     thumbsup = serializers.ReadOnlyField()
     thumbsdown = serializers.ReadOnlyField()
+    playtime_name = serializers.SerializerMethodField()
 
     def get_rating_id(self, obj):
         user = self.context['request'].user
@@ -30,9 +31,12 @@ class GameSerializer(serializers.ModelSerializer):
             return rating.rating if rating else None
         return None
 
+    def get_playtime_name(self, obj):
+        return obj.get_playtime_display()
+
     class Meta:
         model = Game
         fields = [
             'id', 'title', 'tags', 'minplayers',
-            'maxplayers', 'playtime', 'overview', 'rating_id', 'rating_value', 'thumbsup', 'thumbsdown',
+            'maxplayers', 'playtime', 'playtime_name', 'overview', 'rating_id', 'rating_value', 'thumbsup', 'thumbsdown',
         ]
