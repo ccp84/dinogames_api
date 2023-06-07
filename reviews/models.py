@@ -14,7 +14,7 @@ class Review(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     content = models.TextField()
-    lastupdated = models.DateTimeField(auto_now_add=True)
+    lastupdated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["-lastupdated"]

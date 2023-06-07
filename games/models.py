@@ -5,7 +5,7 @@ CustomUser = get_user_model()
 
 class Game(models.Model):
     """
-    Model to contain all member games in the library
+    Model to contain all games in the library
     """
     GAME_LENGTH_CHOICES = (
         (0, "<5"),
