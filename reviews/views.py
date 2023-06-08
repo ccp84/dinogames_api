@@ -22,6 +22,9 @@ class ReviewList(generics.ListCreateAPIView):
 
 
 class AuthorList(generics.ListAPIView):
+    """
+    A filtered view of reviews for the currently logged in user
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReviewSerializer
 
