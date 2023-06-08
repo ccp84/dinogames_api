@@ -106,19 +106,32 @@ I have used a custom user model which replaces the standard Django User model. I
 
 The django documentation on customising the base user model is available [here](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model) as well as a full guide from [Very Academy](https://www.youtube.com/watch?v=Ae7nc1EGv-A)
 
-This custom user model negates the need for a separate Profile model and means one less linkage between models to account for when working with ForeignKeys.
+This custom user model negates the need for a separate Profile model to hold the rest of the user data and means one less linkage between models to account for when working with ForeignKeys.
 
 ### Dj-rest-auth
 
 For this project I have used the latest version of dj-rest-auth to ensure forward compatibility of code and to allow me to set custom registration serializers as defined in the documentation. I have followed the documentation [here](https://dj-rest-auth.readthedocs.io/en/latest/installation.html) for this install process.
 
+### Custom User Serializer
+
 The initial registraion form does not suit my custom user model:
 
 ![rest auth register](/documentation/readme/rest_auth_initial_register.png)
 
-So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedocs.io/en/latest/configuration.html#) for adding a customised registration serializer. The base of my serializer is built on code from the dj-rest-auth github repository file [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
+I have followed the [rest-auth documentation](https://dj-rest-auth.readthedocs.io/en/latest/configuration.html#) for adding a customised registration serializer. The base of my serializer is built on source code from the dj-rest-auth github repository file [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
 
 ![rest auth custom serializer](/documentation/readme/rest_auth_custom_register.png)
+
+Also included is a serializer for returning user details to the admin only view. 
+
+### User Account Endpoints
+
+| URL | View | View Class | Details |
+| --- | ---- | ---------- | ------- |
+| dj-rest-auth/ |  |  |  Standard dj-rest-auth url includes from the library |
+| dj-rest-auth/registration/ |  |  |  Standard registration urls from the allauth library | 
+| user/<int:pk> | UserDetail | RetrieveUpdate | Admin only permission to view and update all user accounts |
+
 
 ## Milestone 2 - Game Library
 
@@ -128,46 +141,10 @@ So I have followed the [rest-auth documentation](https://dj-rest-auth.readthedoc
 
 ### The Game Model
 
-This model will hold all library game instances. In a change from the planned ERD to make number of players more searchable I have used 2 separate fields for min and max players. To help with slimlining the vast range of game play times that could possibly be returned, this field is linked to choices for less than 5 minutes, 5-10, 10-20, 20-40, 40-90 and then anything over an hour and a half. Again these fields will make the games library easier to search and filter for members. 
+This model will hold all library game instances. In a change from the planned ERD to make number of players more searchable I have used 2 separate fields for min and max players. To help with slimlining the vast range of game play times that could possibly be returned, the `playtime` field is linked to choices for less than 5 minutes, 5-10, 10-20, 20-40, 40-90 and then anything over an hour and a half. Again these fields will make the games library easier to search and filter for members. 
 
-### Viewing the library
+### Game Serializer
 
-All visitors will be able to view but make no changes to the full list of games in the library. For this a single endpoint can be created using the generic `List` view with the permission class of `IsAuthenticatedOrReadOnly`. 
-The serializer extends the standard model serializer class and imports the Game model and all model fields for serialization.
-
-### Detailed view of games
-
-This `Retrieve` endpoint can be accessed by all viewing the library to view a single record from the game table. The permission class of `IsAuthenticatedOrReadOnly` is redundant really as this is a read only endpoint. 
-
-### Creating, editing and deleting a game as an administrator
-
-Adding games to the library as well as editing and deletion of incorrectly added, duplicate and out of print games will be restricted to admin only. For this `ListCreate` and `RetrieveUpdateDestroy` endpoints for admin users utilise the more robust permission class of `IsAdminUser` to ensure modifications to the library catalogue are tightly controlled. 
-
-### Filtering the games library
-
-Sorting:
-from rest_framework import generics, filters
-filter_backends = [
-        filters.OrderingFilter
-    ]
-    ordering_fields = [
-        'id',
-        'title',
-        'maxplayers',
-        'minplayers',
-        'playtime',
-    ]
-
-searching:
-/games/?search=board
-    filter_backends = [
-        filters.OrderingFilter,
-        filters.SearchFilter,
-    ]
-    search_fields = [
-        'title',
-        'tags',
-    ]
 
 ## Milestone 3 - Player Reviews
 
