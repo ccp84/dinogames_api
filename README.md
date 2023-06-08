@@ -157,14 +157,17 @@ fields = [
 Additional serializer methods being used:
 
 `get_rating_id`
+
 This serializer method checks the id of the currently logged in user and searches the list of ratings for the game for that users id. If there is a rating for that user, it returns the id linked to the rating that user left for that game, if no rating found then it returns a null value. 
 * The code for this method is based on the `likes` component of the CI Moments walkthrough. 
 
 `get_rating_value`
+
 Similarly to `get_rating_id` this serializer method checks for a rating listed for the currently logged in user. It returns the value of the rating, either True - thumbs up or False - thumbs down. 
 * The code for this method is based on the `likes` component of the CI Moments walkthrough.
 
 `get_playtime_value`
+
 This serializer method returns the human readable value of the `GAME_LENGTH_CHOICES` tuple used to populate `playtime` and is included specifically for the React frontend to use for display purposes. 
 * The solution to this display issue was found in the [StackOverflow thread here](https://stackoverflow.com/questions/49414773/returning-the-human-readable-element-of-a-choice-field-in-drf-serializer)
 
@@ -176,7 +179,7 @@ This serializer method returns the human readable value of the `GAME_LENGTH_CHOI
 | games/ | GameList | List | Read only view available to all site visitors for viewing the library. Added onto the queryset are counts for the number of thumbs up and thumbs down ratings for each game. Searching is available on title and tags fields. Sort by id, title, max/min players and playtime. |
 | games/<int:pk> | GameDetail | Retrieve | A read only view for all site visitors to view a full game individually. Added onto the queryset are counts for the number of thumbs up and thumbs down ratings for each game. |
 | games/create | GameCreate | ListCreate | An admin only read write view for adding new game listings to the library. |
-| games/edit/<int:pk> | GameEdit | RetrieveUpdateDestroy | An admin only Read edit delete view for making changes to games in the library and deleting listings. |
+| games/edit/<int:pk> | GameEdit | RetrieveUpdateDestroy | An admin only read edit delete view for making changes to games in the library and deleting listings. |
 
 ## Milestone 3 - Player Reviews
 
