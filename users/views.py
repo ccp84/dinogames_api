@@ -7,8 +7,8 @@ from rest_framework import permissions
 
 class UserDetail(generics.RetrieveUpdateAPIView):
     """
-    Read write view for updating user account details
+    Admin only write view for updating user account details
     """
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]
     queryset = CustomUser.objects.all()
     serializer_class = UserDetailsSerializer

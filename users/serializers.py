@@ -27,7 +27,6 @@ class CustomUserSerializer(serializers.Serializer):
     lastname = serializers.CharField(required=True)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
-    # profilepic = serializers.ImageField(required=False, allow_null=True)
     profileicon = serializers.CharField(default="dice")
 
     def validate_username(self, username):
