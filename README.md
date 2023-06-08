@@ -189,16 +189,45 @@ This serializer method returns the human readable value of the `GAME_LENGTH_CHOI
 
 ### The Review Model
 
-### Creating a review
+The Review model holds all reviews written by authorised members of the library. Each review has an author linked to the CustomUser model, game being reviewed linked to the Game model, content of the review and the date and time it was last updated. 
 
-### Editing a review
+### Review Serializers
 
-### Deleting a review
+The review serializer returned fields:
+```python
+fields = [
+        'id', 'author', 'is_author', 'profileicon',
+        'game', 'game_title', 'content', 'lastupdated'
+        ]
+```
 
-### Listing all reviews for a game
+Read only fields : author - author.username, profileicon - author.profileicon
 
-### Listing all reviews for a member
-https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend
+Serializer method fields being used:
+
+`get_is_author`
+
+This method checks if the currently logged in user matches the review author field and returns the result. 
+
+`get_lastupdated`
+
+This method formats `lastupdated` from a string into a readable version of date and time. 
+
+The Review Detail Serializer
+
+This extends everything from the Review serializer, but makes game a read only field so that it cannot be overwritten when editing an instance. 
+
+### Review Component Endpoints
+
+| URL | View | View Class | Details |
+| --- | ---- | ---------- | ------- |
+| reviews/ | ReviewList | ListCreate | Read endpoint for all site visitors, write endpoint for authenticated members. Includes a save method to add the currently logged in user as the author. Filtering provided by Django Filter Backends, filterable on author and game fields. |
+| reviews/author | AuthorList | List | Read endpoint with the queryset filtered by the currently logged in user. Provided as a cleaner access point to a full list of all reviews written by one member than the additional filtering. |
+| reviews/<int:pk> | ReviewDetail | RetrieveUpdateDestroy | A read write destroy endpoint for the review author to maintain their reviews. Utilises the custom permission class `IsAuthorOrReadOnly` to manage put and delete actions.  |
+
+### Custom Permission Class
+
+The standard permission classes don't cover specifically granting access only to the author or a resource and so for this purpose a custom permission class was needed. Using the example in the CI Moments walkthrough, and reading further in the DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples) I added the permission class `IsAuthorOrReadOnly`.
 
 ## Milestone 4 - Announcements
 
@@ -210,15 +239,12 @@ https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend
 
 ### The Category Model
 
-### Creating an announcement
+### Announcement Serializer
 
-### Linking to a category
+### Announcement Component Endpoints
 
-### Viewing announcements
-
-### Filtering by category
-
-### Editing and deleting announcements
+| URL | View | View Class | Details |
+| --- | ---- | ---------- | ------- |
 
 ## Milestone 5 - Ratings
 
@@ -236,8 +262,7 @@ https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend
 
 ### Adding extra fields to the game serializer to link game to ratings
 
-https://docs.djangoproject.com/en/3.2/topics/db/aggregation/#cheat-sheet
-https://docs.djangoproject.com/en/3.2/ref/models/querysets/#std-fieldlookup-exact
+
 
 ## Credits
 
@@ -248,11 +273,12 @@ https://docs.djangoproject.com/en/3.2/ref/models/querysets/#std-fieldlookup-exac
 * For use of dj-rest-auth I followed the documentation [here](https://dj-rest-auth.readthedocs.io/en/latest/installation.html)
 * Serializing date time field https://www.django-rest-framework.org/api-guide/fields/#datetimefield
 * To return a filtered list of reviews specific to the logged in user I followed the [DRF guide to using backend filters here](https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend)
+* To add the extra fields to the Game queryset for calculating and returning numbers of thumbs up and thumbs down ratings, I read the topics listed in the documentation [here as an overview of aggregation](https://docs.djangoproject.com/en/3.2/topics/db/aggregation/#cheat-sheet) and also [this part of the documentation](https://docs.djangoproject.com/en/3.2/ref/models/querysets/#std-fieldlookup-exact) for producing the correct SQL query string. 
 
 ### Code used from other sources
 
 * Custom serializer built from the base code of the rest-auth repository [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
-* Custom permission class `IsOwnerOrReadOnly` taken from DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples)
+* Custom permission class `IsAuthorOrReadOnly` based on the DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples)
 
 ### Media and images
 
