@@ -5,7 +5,7 @@ from ratings.models import Rating
 
 class GameSerializer(serializers.ModelSerializer):
     """
-    Rating id links rating to the member who created it
+    Return fields for all Game model endpoint views
     """
     rating_id = serializers.SerializerMethodField()
     rating_value = serializers.SerializerMethodField()
@@ -14,6 +14,11 @@ class GameSerializer(serializers.ModelSerializer):
     playtime_name = serializers.SerializerMethodField()
 
     def get_rating_id(self, obj):
+        """
+        Return the id of the rating created for the game by the
+        currently logged in user, otherwise returns None if no rating
+        is found
+        """
         user = self.context['request'].user
         if user.is_authenticated:
             rating = Rating.objects.filter(
@@ -23,6 +28,11 @@ class GameSerializer(serializers.ModelSerializer):
         return None
 
     def get_rating_value(self, obj):
+        """
+        Return the value of the rating currently being viewed
+        Ratings are unique per user so only one value can be shown
+        per logged in user
+        """
         user = self.context['request'].user
         if user.is_authenticated:
             rating = Rating.objects.filter(
@@ -32,6 +42,10 @@ class GameSerializer(serializers.ModelSerializer):
         return None
 
     def get_playtime_name(self, obj):
+        """
+        Return the human readable value of the GAME_LENGTH_CHOICES tuple
+        to the serializer for use by the React frontend
+        """
         return obj.get_playtime_display()
 
     class Meta:
