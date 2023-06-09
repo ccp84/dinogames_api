@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['localhost', 'dinogames-api.herokuapp.com',
-                 '8000-ccp84-dinogamesapi-b7sikjpr5mz.ws-eu98.gitpod.io']
+                 '8000-ccp84-dinogamesapi-b7sikjpr5mz.ws-eu99.gitpod.io']
 
 
 # Application definition
@@ -113,16 +113,16 @@ WSGI_APPLICATION = 'dinogames.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-
-# }
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+if "DEV" in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }}
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 
 # Password validation
@@ -149,8 +149,8 @@ REST_AUTH = {
     'REGISTER_SERIALIZER': 'users.serializers.CustomUserSerializer',
     'USER_DETAILS_SERIALIZER': 'users.serializers.UserDetailsSerializer',
     'USE_JWT': True,
-    'JWT_AUTH_COOKIE': 'my-app-auth',
-    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    'JWT_AUTH_COOKIE': 'dino-cookies',
+    'JWT_AUTH_REFRESH_COOKIE': 'dino-refresh-token',
     'JWT_AUTH_SAMESITE': 'None',
     'JWT_AUTH_SECURE': True
 }
@@ -159,8 +159,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
-        # 'rest_framework.authentication.SessionAuthentication'
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        "rest_framework.authentication.SessionAuthentication"
+        if "DEV" in os.environ
+        else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
     )]
 }
 
