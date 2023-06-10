@@ -8,7 +8,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     ---------------------------------------------------------------------
     Object-level permission to only allow owners of an object to edit it.
     Assumes the model instance has an `owner` attribute.
-    Taken from 
+    Taken from
     https://www.django-rest-framework.org/api-guide/permissions/#examples
     """
 
