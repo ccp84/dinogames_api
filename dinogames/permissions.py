@@ -8,7 +8,8 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     ---------------------------------------------------------------------
     Object-level permission to only allow owners of an object to edit it.
     Assumes the model instance has an `owner` attribute.
-    Taken from https://www.django-rest-framework.org/api-guide/permissions/#examples
+    Taken from 
+    https://www.django-rest-framework.org/api-guide/permissions/#examples
     """
 
     def has_object_permission(self, request, view, obj):
@@ -17,5 +18,6 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        # IMPORTANT!!! Changed from example to match author attribute on reviews model
+        # IMPORTANT!!!
+        # Changed from example to match author attribute on reviews model
         return obj.author == request.user
