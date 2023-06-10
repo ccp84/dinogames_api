@@ -1,5 +1,20 @@
 # Testing
 
+Return to the [README.md](README.md) file.
+
+## Code Validation
+
+### Python
+
+I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
+
+| File | CI URL | Screenshot | Notes |
+| --- | --- | --- | --- |
+| Dinogames main component |  |  |  |
+| settings.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/dinogames/settings.py) | ![screenshot](documentation/testing/py_validation_settings.png) | None |
+| permissions.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/dinogames/permissions.py) | ![screenshot](documentation/testing/py_validation_permissions.png) | None |
+| urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/dinogames/urls.py) | ![screenshot](documentation/testing/py_validation_dinogames_urls.png) | None |
+
 ## Postman Checking Availability of Endpoints
 
 | Endpoint| Expected Result |         |
