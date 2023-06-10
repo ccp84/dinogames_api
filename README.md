@@ -223,11 +223,11 @@ This extends everything from the Review serializer, but makes game a read only f
 | --- | ---- | ---------- | ------- |
 | reviews/ | ReviewList | ListCreate | Read endpoint for all site visitors, write endpoint for authenticated members. Includes a save method to add the currently logged in user as the author. Filtering provided by Django Filter Backends, filterable on author and game fields. |
 | reviews/author | AuthorList | List | Read endpoint with the queryset filtered by the currently logged in user. Provided as a cleaner access point to a full list of all reviews written by one member than the additional filtering. |
-| reviews/<int:pk> | ReviewDetail | RetrieveUpdateDestroy | A read write destroy endpoint for the review author to maintain their reviews. Utilises the custom permission class `IsAuthorOrReadOnly` to manage put and delete actions.  |
+| reviews/<int:pk> | ReviewDetail | RetrieveUpdateDestroy | A read write destroy endpoint for the review author to maintain their reviews. Utilises the custom permission class `IsOwnerOrReadOnly` to manage put and delete actions.  |
 
 ### Custom Permission Class
 
-The standard permission classes don't cover specifically granting access only to the author or a resource and so for this purpose a custom permission class was needed. Using the example in the CI Moments walkthrough, and reading further in the DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples) I added the permission class `IsAuthorOrReadOnly`.
+The standard permission classes don't cover specifically granting access only to the author or a resource and so for this purpose a custom permission class was needed. Using the example in the CI Moments walkthrough, and reading further in the DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples) I added the permission class `IsOwnerOrReadOnly`.
 
 ## Milestone 4 - Announcements
 
@@ -237,32 +237,88 @@ The standard permission classes don't cover specifically granting access only to
 
 ### The Announcement Model
 
+The Announcement model holds all admin posts about news and events. Each instance has a category linked to the Category model, title of the article, content of the article, the date and time it was last updated and the author linked to CustomUser.
+
 ### The Category Model
 
+The Category model very simply has a title. This is the category for the announcement being posted and has been developed this way as it is easier to extend the available categories for announcement posts via a linked table than it is to extend a choice field and tuple list. Future project development could allow new categories to be added from the front end. 
+
 ### Announcement Serializer
+
+Fields returned by the serializer:
+```python
+fields = [
+        'id', 'category', 'category_title', 'title',
+        'content', 'lastupdated', 'author', 'profileicon'
+        ]
+```
+
+Read only fields : author - returns the username of the user that posted the announcement, profileicon - returns the icon linked to the account of the author, category_title - returns the title of the category the announcement has been tagged with.
+
+Serializer method fields being used:
+
+`get_lastupdated`
+
+This method formats `lastupdated` from a string into a readable version of date and time. 
 
 ### Announcement Component Endpoints
 
 | URL | View | View Class | Details |
 | --- | ---- | ---------- | ------- |
+| announcement/ | AnnouncementList | List | Read only endpoint for site visitors to be able to view all announcements  |
+| announcement/admin | AnnouncementCreate | ListCreate | Read write endpoint accessible to admin users only. includes a save method so that the currently logged in user is automatically added as the post author. |
+| announcement/admin/<int:pk> | AnnouncementDetail | RetrieveUpdateDestroy | Read write delete endpoint for admin users only to edit and delete announcement instances. Includes a save method so that the currently logged in user is added as the post author incase a different member of staff to the original author edits the announcement. |
 
 ## Milestone 5 - Ratings
 
 | Tasks this sprint | Sprint Overview |
 | ----------------- | --------------- |
-| * Create Ratings model and serializer. * Add authenticated view for creating ratings. * Add view for listing all ratings for each game. * Add update view for author of rating. | ![sprint5](/documentation/readme/sprint5.png) |
+| * Create Ratings model and serializer. * Add authenticated view for creating ratings. * Link Game component to view ratings. * Add update view for author of rating. | ![sprint5](/documentation/readme/sprint5.png) |
 
 ### The Ratings model
 
-### Adding thumbs up or thumbs down
+The ratings model has an author linked to CustomUser, game being rated linked to the Game model, and a boolean rating for thumbs up or thumbs down. It also has a unique requirement for one author only being able to rate a game once. 
 
-### Viewing all ratings for a game
+In order for this component to work, additional fields have also been added to the Game component above.
 
-### Editing a rating
+### Ratings Serializer
 
-### Adding extra fields to the game serializer to link game to ratings
+Fields returned by the serializer:
+```python
+fields = [
+        'id', 'author', 'game', 'game_title', 'rating'
+        ]
+```
 
+Read only fields : author - author.username, game_title - game.title
 
+Additional methods being used:
+
+Return an error message instead of a standard server 500 message if a user tried to create more than one rating instance.
+```python
+try:
+    return super().create(validated_data)
+except IntegrityError:
+    raise serializers.ValidationError({
+    	'detail': 'You can only rate a game once'
+})
+```
+* Code based on the CI Moments Walkthrough project
+
+### Ratings Component Endpoints
+
+| URL | View | View Class | Details |
+| --- | ---- | ---------- | ------- |
+| ratings/ | RatingList | ListCreate | Read endpoint for all site visitors, write endpoint for authenticated members to add thumbs up/down ratings to games. Makes use of Django Filter Backend to filter by game, rating and author. Sorting by ratings. |
+| ratings/<int:pk> | RatingDetail | RetrieveUpdateDestroy | Read edit delete endpoint for instance owner to edit and remove the ratings they have left. |
+
+## Future Features
+
+## Testing
+
+## Deployment
+
+## Technologies Used
 
 ## Credits
 
@@ -278,7 +334,7 @@ The standard permission classes don't cover specifically granting access only to
 ### Code used from other sources
 
 * Custom serializer built from the base code of the rest-auth repository [here](https://github.com/iMerica/dj-rest-auth/blob/master/dj_rest_auth/registration/serializers.py)
-* Custom permission class `IsAuthorOrReadOnly` based on the DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples)
+* Custom permission class `IsOwnerOrReadOnly` taken from the DRF documentation [here](https://www.django-rest-framework.org/api-guide/permissions/#examples)
 
 ### Media and images
 
