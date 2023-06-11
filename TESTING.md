@@ -48,17 +48,24 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 
 Defensive programming was manually tested using Postman to check the responses of all endpoints as follows:
 
-| Test | Endpoint | Method | Expected Result | Notes | Screenshot |
-| ---- | -------- | ------ | --------------- | ----- | ---------- |
-| 1 | user/int:pk | GET | Endpoint only accessible with admin credentials | Test passed | ![defensivetest1](/documentation/testing/defensive_testing_1.png) |
-| 2 | user/int:pk | PUT | An admin account can edit user details via a PUT request | Test passed | ![defensivetest2](/documentation/testing/defensive_testing_2.png) |
-| 3 | games/ | GET | Any site visitor can view the list of games | Test passed | ![defensivetest3](/documentation/testing/defensive_testing_3.png) |
-| 4 | games/int:pk | GET | Any site visitor can view the details of a specific game | Test passed | ![defensivetest4](/documentation/testing/defensive_testing_4.png) |
-| 5 | games/create | GET | Only admin can view this endpoint | Test passed | ![defensivetest5](/documentation/testing/defensive_testing_5.png) |
-| 6 | games/create | POST | Admin account can list a new game | Test passed | ![defensivetest6](/documentation/testing/defensive_testing_6.png) |
-| 7 | games/edit/int:pk | GET | Only admin can access this endpoint | Test passed | ![defensivetest7](/documentation/testing/defensive_testing_7.png) |
-| 8 | games/edit/int:pk | PUT | Admin user can edit game details | Test passed | ![defensivetest8](/documentation/testing/defensive_testing_8.png) |
-| 9 | games/edit/int:pk | DELETE | Admin user can delete a game | Test passed | ![defensivetest9](/documentation/testing/defensive_testing_9.png) |
+| Test | Endpoint | Method | User Type | Expected Result | Pass / Fail | Screenshot |
+| ---- | -------- | ------ | --------- | --------------- | ------- | ---------- |
+| 1 | user/int:pk | GET | User | Access denied | Pass | ![defensivetest1](/documentation/testing/defensive_testing_1.png) |
+| 2 | user/int:pk | PUT | User | Access denied | Pass | ![defensivetest2](/documentation/testing/defensive_testing_2.png) |
+| 3 | user/int:pk | PUT | Admin | Edit request successful | Pass | ![defensivetest3](/documentation/testing/defensive_testing_3.png) |
+| 4 | games/ | GET | - | List of games returned | Pass | ![defensivetest4](/documentation/testing/defensive_testing_4.png) |
+| 5 | games/int:pk | GET | - | Game details returned | Pass | ![defensivetest5](/documentation/testing/defensive_testing_5.png) |
+| 6 | games/create | GET | User | Access denied | Pass | ![defensivetest6](/documentation/testing/defensive_testing_6.png) |
+| 7 | games/create | GET | Admin | List of games returned | Pass | ![defensivetest7](/documentation/testing/defensive_testing_7.png) |
+| 8 | games/create | POST | User | Access denied | Pass | ![defensivetest8](/documentation/testing/defensive_testing_8.png) |
+| 9 | games/create | POST | Admin | New game instance created | Pass | ![defensivetest9](/documentation/testing/defensive_testing_9.png) |
+| 10 | games/edit/int:pk | GET | User | Access denied | Pass | ![defensivetest10](/documentation/testing/defensive_testing_10.png) |
+| 11 | games/edit/int:pk | GET | Admin | Game details returned | Pass | ![defensivetest11](/documentation/testing/defensive_testing_11.png) |
+| 12 | games/edit/int:pk | PUT | User | Access denied | Pass | ![defensivetest12](/documentation/testing/defensive_testing_12.png) |
+| 13 | games/edit/int:pk | PUT | Admin | Game details edited | Pass | ![defensivetest13](/documentation/testing/defensive_testing_13.png) |
+| 14 | games/edit/int:pk | DELETE | User | Access denied | Pass | ![defensivetest14](/documentation/testing/defensive_testing_14.png) |
+| 15 | games/edit/int:pk | DELETE | Admin | Game instance is removed | Pass | ![defensivetest15](/documentation/testing/defensive_testing_15.png) |
+
 
 ## User Story Testing
 
