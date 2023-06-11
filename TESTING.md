@@ -19,6 +19,12 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 | serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/serializers.py) | ![screenshot](documentation/testing/py_validation_announcements_serializer.png) | None |
 | urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/urls.py) | ![screenshot](documentation/testing/py_validation_announcements_urls.png) | None |
 | views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/views.py) | ![screenshot](documentation/testing/py_validation_announcements_views.png) | None |
+| Games component |  |  |  |
+| admin.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/games/admin.py) | ![screenshot](documentation/testing/py_validation_games_admin.png) | None |
+| models.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/games/models.py) | ![screenshot](documentation/testing/py_validation_games_models.png) | None |
+| serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/games/serializers.py) | ![screenshot](documentation/testing/py_validation_games_serializer.png) | None |
+| urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/games/urls.py) | ![screenshot](documentation/testing/py_validation_games_urls.png) | None |
+| views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/games/views.py) | ![screenshot](documentation/testing/py_validation_games_views.png) | None |
 
 ## Postman Checking Availability of Endpoints
 
