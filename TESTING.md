@@ -31,6 +31,12 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 | serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/ratings/serializers.py) | ![screenshot](documentation/testing/py_validation_ratings_serializer.png) | None |
 | urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/ratings/urls.py) | ![screenshot](documentation/testing/py_validation_ratings_urls.png) | None |
 | views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/ratings/views.py) | ![screenshot](documentation/testing/py_validation_ratings_views.png) | None |
+| Reviews component |  |  |  |
+| admin.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/admin.py) | ![screenshot](documentation/testing/py_validation_reviews_admin.png) | None |
+| models.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/models.py) | ![screenshot](documentation/testing/py_validation_reviews_models.png) | None |
+| serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/serializers.py) | ![screenshot](documentation/testing/py_validation_reviews_serializer.png) | None |
+| urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/urls.py) | ![screenshot](documentation/testing/py_validation_reviews_urls.png) | None |
+| views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/views.py) | ![screenshot](documentation/testing/py_validation_reviews_views.png) | None |
 
 ## Defensive Programming
 
