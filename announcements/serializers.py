@@ -22,5 +22,6 @@ class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
         fields = [
-            'id', 'category', 'category_title', 'title', 'content', 'lastupdated', 'author', 'profileicon'
+            'id', 'category', 'category_title', 'title', 'content',
+            'lastupdated', 'author', 'profileicon'
         ]
