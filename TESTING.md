@@ -3,7 +3,6 @@
 Return to the [README.md](README.md) file.
 
 ## Code Validation
-
 ### Python
 
 I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
@@ -14,6 +13,12 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 | settings.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/dinogames/settings.py) | ![screenshot](documentation/testing/py_validation_settings.png) | None |
 | permissions.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/dinogames/permissions.py) | ![screenshot](documentation/testing/py_validation_permissions.png) | None |
 | urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/dinogames/urls.py) | ![screenshot](documentation/testing/py_validation_dinogames_urls.png) | None |
+| Announcements component |  |  |  |
+| admin.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/admin.py) | ![screenshot](documentation/testing/py_validation_announcements_admin.png) | None |
+| models.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/models.py) | ![screenshot](documentation/testing/py_validation_announcements_models.png) | None |
+| serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/serializers.py) | ![screenshot](documentation/testing/py_validation_announcements_serializer.png) | None |
+| urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/urls.py) | ![screenshot](documentation/testing/py_validation_announcements_urls.png) | None |
+| views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/announcements/views.py) | ![screenshot](documentation/testing/py_validation_announcements_views.png) | None |
 
 ## Postman Checking Availability of Endpoints
 
