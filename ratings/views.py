@@ -14,7 +14,7 @@ class RatingList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = RatingSerializer
     queryset = Rating.objects.all()
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter,]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, ]
     filterset_fields = ['game', 'author', 'rating']
 
     ordering_fields = [
