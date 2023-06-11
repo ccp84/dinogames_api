@@ -37,22 +37,20 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 | serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/serializers.py) | ![screenshot](documentation/testing/py_validation_reviews_serializer.png) | None |
 | urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/urls.py) | ![screenshot](documentation/testing/py_validation_reviews_urls.png) | None |
 | views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/reviews/views.py) | ![screenshot](documentation/testing/py_validation_reviews_views.png) | None |
+| Users component |  |  |  |
+| admin.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/users/admin.py) | ![screenshot](documentation/testing/py_validation_users_admin.png) | None |
+| models.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/users/models.py) | ![screenshot](documentation/testing/py_validation_users_models.png) | None |
+| serializers.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/users/serializers.py) | ![screenshot](documentation/testing/py_validation_users_serializer.png) | None |
+| urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/users/urls.py) | ![screenshot](documentation/testing/py_validation_users_urls.png) | None |
+| views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/dinogames_api/main/users/views.py) | ![screenshot](documentation/testing/py_validation_users_views.png) | None |
 
 ## Defensive Programming
 
 Defensive programming was manually tested using Postman to check the responses of all endpoints as follows:
 
-| Endpoint| Expected Result |         |
-| ------- | --------------- | ------- |
-| User Registration | 201_Created. Returns user details added to the system| ![screenshot](/documentation/testing/postman_testingregister.png)|
-| Login | 200 OK. Returns access token and user profile details| ![screenshot](/documentation/testing/postman_testinglogin.png)|
-| Logout | 200 OK. Removes access and refresh tokens from cookie, no data returned.| ![screenshot](/documentation/testing/postman_testinglogout.png)|
-| User detail | 200 OK. Returns user profile detail for id given.| ![screenshot](/documentation/testing/postman_testinguserdetail.png)|
-| Token refresh | 200 OK Returns new access token| ![screenshot](/documentation/testing/postman_testing_tokenrefresh.png)|
-| Game List | Logged out - 403 Not Authenticated| ![screenshot](/documentation/testing/postman_testinggamelist_loggedout.png)|
-| Game List | Logged in - 200 OK| ![screenshot](/documentation/testing/postman_testinggamelist_loggedin.png)|
-| Game Create | Logged out - 403 Not Authenticated| ![screenshot](/documentation/testing/postman_testinggamecreate_loggedout.png)|
-| Game Create | Logged in - 201 Created| ![screenshot](/documentation/testing/postman_testinggamecreate_loggedin.png)|
+| Endpoint | Expected Result | Notes | Screenshot |
+| -------- | --------------- | ----- | ---------- |
+|  |  |  |  |
 
 
 ## User Story Testing
