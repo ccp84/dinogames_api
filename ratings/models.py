@@ -7,7 +7,8 @@ CustomUser = get_user_model()
 class Rating(models.Model):
     """
     Ratings model to hold thumbs up or down rating of games
-    Rating field holds thumbs up - True, thumbs down - False or blank for not yet rated
+    Rating field holds thumbs up: True,
+    thumbs down: False or blank for not yet rated
     """
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     game = models.ForeignKey(
