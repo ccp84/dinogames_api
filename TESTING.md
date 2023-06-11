@@ -48,10 +48,10 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 
 Defensive programming was manually tested using Postman to check the responses of all endpoints as follows:
 
-| Endpoint | Expected Result | Notes | Screenshot |
-| -------- | --------------- | ----- | ---------- |
-|  |  |  |  |
-
+| Test | Endpoint | Method | Expected Result | Notes | Screenshot |
+| ---- | -------- | ------ | --------------- | ----- | ---------- |
+| 1 | user/int:pk | GET | Endpoint only accessible with admin credentials | Test passed | ![defensivetest1](/documentation/testing/defensive_testing_1.png) |
+| 2 | user/int:pk | PUT | An admin account can edit user details via a PUT request | Test passed | ![defensivetest2](/documentation/testing/defensive_testing_2.png) |
 
 ## User Story Testing
 
