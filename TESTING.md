@@ -65,6 +65,16 @@ Defensive programming was manually tested using Postman to check the responses o
 | 13 | games/edit/int:pk | PUT | Admin | Game details edited | Pass | ![defensivetest13](/documentation/testing/defensive_testing_13.png) |
 | 14 | games/edit/int:pk | DELETE | User | Access denied | Pass | ![defensivetest14](/documentation/testing/defensive_testing_14.png) |
 | 15 | games/edit/int:pk | DELETE | Admin | Game instance is removed | Pass | ![defensivetest15](/documentation/testing/defensive_testing_15.png) |
+| 16 | reviews/ | GET | - | List of reviews returned | Pass |  |
+| 17 | reviews/ | POST | - | Access denied | Pass |  |
+| 18 | reviews/  | POST | User | Review instance created | Pass |  |
+| 18 | reviews/author | GET | - | Invalid request | Pass |  |
+| 18 | reviews/author | GET | User | Filtered list of reviews returned | Pass |  |
+| 19 | reviews/int:pk | GET | Not instance author | Accessing other user id's review allowed | Pass | |
+| 20 | reviews/int:pk | PUT | Not instance author | Access denied | Pass | |
+| 21 | reviews/int:pk | PUT | Instance author | Review updated | Pass | |
+| 22 | reviews/int:pk | DELETE | Not instance author | Access denied | Pass | |
+| 23 | reviews/int:pk | DELETE | Instance author | Review deleted | Pass | |
 
 
 ## User Story Testing
