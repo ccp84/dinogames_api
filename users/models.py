@@ -1,11 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin, BaseUserManager
 
 
 class CustomAccountManager(BaseUserManager):
 
-    def create_superuser(self, email, username, firstname, lastname, password, **other_fields):
-        """ 
+    def create_superuser(
+            self, email, username, firstname,
+            lastname, password, **other_fields):
+        """
         Creates and saves a superuser from the custom user model
         Based on the example here:
         https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#a-full-example
@@ -21,11 +24,14 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
 
-        return self.create_user(email, username, firstname, lastname, password, **other_fields)
+        return self.create_user(
+            email, username, firstname, lastname, password, **other_fields)
 
-    def create_user(self, email, username, firstname, lastname, password, **other_fields):
-        """ 
-        Creates a user instance from the custom user model 
+    def create_user(
+            self, email, username, firstname,
+            lastname, password, **other_fields):
+        """
+        Creates a user instance from the custom user model
         """
 
         if not username:
@@ -36,7 +42,8 @@ class CustomAccountManager(BaseUserManager):
 
         email = self.normalize_email(email)
         user = self.model(email=email, username=username,
-                          firstname=firstname, lastname=lastname, **other_fields)
+                          firstname=firstname, lastname=lastname,
+                          **other_fields)
         user.set_password(password)
         user.save()
         return user
@@ -44,7 +51,7 @@ class CustomAccountManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
 
-    """ 
+    """
     Customised user model over writing the base user model.
     I have followed the django documentation here to create this model:
     https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model
