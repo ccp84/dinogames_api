@@ -52,6 +52,13 @@ Defensive programming was manually tested using Postman to check the responses o
 | ---- | -------- | ------ | --------------- | ----- | ---------- |
 | 1 | user/int:pk | GET | Endpoint only accessible with admin credentials | Test passed | ![defensivetest1](/documentation/testing/defensive_testing_1.png) |
 | 2 | user/int:pk | PUT | An admin account can edit user details via a PUT request | Test passed | ![defensivetest2](/documentation/testing/defensive_testing_2.png) |
+| 3 | games/ | GET | Any site visitor can view the list of games | Test passed | ![defensivetest3](/documentation/testing/defensive_testing_3.png) |
+| 4 | games/int:pk | GET | Any site visitor can view the details of a specific game | Test passed | ![defensivetest4](/documentation/testing/defensive_testing_4.png) |
+| 5 | games/create | GET | Only admin can view this endpoint | Test passed | ![defensivetest5](/documentation/testing/defensive_testing_5.png) |
+| 6 | games/create | POST | Admin account can list a new game | Test passed | ![defensivetest6](/documentation/testing/defensive_testing_6.png) |
+| 7 | games/edit/int:pk | GET | Only admin can access this endpoint | Test passed | ![defensivetest7](/documentation/testing/defensive_testing_7.png) |
+| 8 | games/edit/int:pk | PUT | Admin user can edit game details | Test passed | ![defensivetest8](/documentation/testing/defensive_testing_8.png) |
+| 9 | games/edit/int:pk | DELETE | Admin user can delete a game | Test passed | ![defensivetest9](/documentation/testing/defensive_testing_9.png) |
 
 ## User Story Testing
 
