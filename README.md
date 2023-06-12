@@ -102,6 +102,12 @@ The Rating Model
 | ----------------- | -------------- |
 | Project Setup, Create Custom user model and serializers, make signup endpoint available to all users, set up JWT, make login endpoint available to all users, make token refresh endpoint available to authenticated users, make logout endpoint available to deny further token refreshes | ![sprint 1 screenshot](/documentation/readme/sprint1.png) |
 
+| User Stories This Milestone | Backend Acceptance Criteria |
+| --------------------------- | --------------------------- |
+| As a visitor to the site I want to be able to create an account so that I can access the full membership features | Custom user model is created in DRF , API endpoint for account creation is exposed and accessible to all site visitors |
+| As a member I want to be able to log into my account so that I can access the full features of the library. | Login endpoint is available to connect to at the API, JWT exchange is set up at the API to allow for stateless authentication |
+| As a member I want to be able to log out of my account to keep my data secure. | Logout endpoint is reachable to send requests to |
+
 ### Custom User Model
 
 I have used a custom user model which replaces the standard Django User model. It was essential that this was the first step in the project before any migrations were made to avoid table conflicts.
@@ -140,6 +146,14 @@ Also included is a serializer for returning user details to the admin only view.
 | Tasks this sprint | Sprint Overview |
 | ----------------- | --------------- |
 | Create Game model and serializers. Add CreateList, RetrieveUpdateDestroy endpoints for admin and Listview endpoint for all. | ![sprint2](/documentation/readme/sprint2.png) |
+
+| User Stories This Milestone | Backend Acceptance Criteria |
+| --------------------------- | --------------------------- |
+| As a member of staff I want to be able to add games to the library so that site visitors can see what games are available to play | Game model is created in DRF backend, Create game endpoint available and accepts authenticated data requests and saves to the game table, POST endpoint is available and rejects connections without authentication headers, Created games are listed in the games library |
+| As a member of staff I want to be able to edit listed games so that the details are always accurate and up to date | Detailed View is available from the API, PUT endpoint is accessible and accepts requests from the admin users |
+| As a member of staff I want to be able to delete a game from the library so that any old games no longer available are removed from the list | Delete endpoint is accessible to admin accounts, Game instance is successfully deleted from the library |
+| As a member I want to be able to see all of the games available in the library so that I can read the reviews and look for games I might like | The API returns a full list of games available from the Game table |
+| As a member I want to be able to search the library by game feature so that I can pick out the games most suited to my interests | Search and filter set up on the API end point |
 
 ### The Game Model
 
@@ -189,6 +203,14 @@ This serializer method returns the human readable value of the `GAME_LENGTH_CHOI
 | ----------------- | --------------- |
 | * Create Review model and serializer. * Add view for listing all reviews. * Add endpoint to create new reviews. * Add update and destroy endpoint for review owner. * Filter review list by member | ![sprint3](/documentation/readme/sprint3.png) |
 
+| User Stories This Milestone | Backend Acceptance Criteria |
+| --------------------------- | --------------------------- |
+| As a library member I want to be able to review games that I have played so that other members can find out if they might want to play that game | Reviews model created, POST endpoint created and accessible to authenticated users |
+| As a library member I want to be able to edit the reviews I have left so that I can change any errors or update my opinion at a later date | PUT endpoint accepts requests from instance owner only, Data is successfully updated |
+| As a library member I want to be able to delete reviews that I have made so that I can start again if there are too many edits to make or remove opinions I no longer hold. | Destroy endpoint accepts requests from resource owner only |
+| As a member I want to be able to see a list of reviews that I have written so that I can remember what I have already reviewed and check they are still relevant | Filtered list endpoint available for reviews written by the logged in user |
+| As a site visitor I want to be able to read reviews of games by people that have already played them so that I can decide if I might want to play that game | API list endpoint available for all with read access |
+
 ### The Review Model
 
 The Review model holds all reviews written by authorised members of the library. Each review has an author linked to the CustomUser model, game being reviewed linked to the Game model, content of the review and the date and time it was last updated. 
@@ -237,6 +259,13 @@ The standard permission classes don't cover specifically granting access only to
 | ----------------- | --------------- |
 | * Create Announcement model and serializer. * Create Category model. * Add view for listing all announcements. * Add admin only endpoint to create new announcements. * Add update and destroy endpoint for admin users. | ![sprint4](/documentation/readme/sprint4.png) |
 
+| User Stories This Milestone | Backend Acceptance Criteria |
+| --------------------------- | --------------------------- |
+| As an admin user I want to create announcements so that I can update site visitors about events happening in the library | News model is created in DRF, Category model is created in DRF, A CreateAPI view is available that is accessible to admin only |
+| As an admin user I want to be able to edit existing announcements so that they will always be up to date if the details change | PUT endpoint accessible to admin users only, Edits are successfully saved |
+| As an admin user I want to be able to delete announcements so that events and updates that are no longer relevant can be removed | Destroy endpoint accessible to admin users only |
+| As a visitor to the site I want to be able to read all of the latest announcements so that I can find out about events that are happening in the library | ListAPI endpoint is available for read only access to all site visitors, Announcements are listed in reverse chronological order |
+
 ### The Announcement Model
 
 The Announcement model holds all admin posts about news and events. Each instance has a category linked to the Category model, title of the article, content of the article, the date and time it was last updated and the author linked to CustomUser.
@@ -276,6 +305,13 @@ This method formats `lastupdated` from a string into a readable version of date 
 | Tasks this sprint | Sprint Overview |
 | ----------------- | --------------- |
 | * Create Ratings model and serializer. * Add authenticated view for creating ratings. * Link Game component to view ratings. * Add update view for author of rating. | ![sprint5](/documentation/readme/sprint5.png) |
+
+| User Stories This Milestone | Backend Acceptance Criteria |
+| --------------------------- | --------------------------- |
+| As a member I want to be able to add a thumbs up or thumbs down rating so that other users can see if they might want to play the game. | Ratings model created in DRF backend, POST endpoint available to all authenticated members |
+| As a user I want to be able to edit the rating I have left so that I can update my opinion if I change my mind. | PUT endpoint available to author of the rating |
+| As a member I want to see the games I have rated so that I can pick out games I have already played and enjoyed to play again. | Retrieve endpoint available that filters ratings by the member that made them |
+|As a site visitor I want to be able to see ratings left by other people so that I know if I might want to play that game or not. | GET endpoint filtered by game available to return a list of all ratings |
 
 ### The Ratings model
 
