@@ -75,6 +75,17 @@ Defensive programming was manually tested using Postman to check the responses o
 | 23 | reviews/int:pk | PUT | Instance author | Review updated | Pass | ![defensivetest23](/documentation/testing/defensive_testing_23.png) |
 | 24 | reviews/int:pk | DELETE | Not instance author | Access denied | Pass | ![defensivetest24](/documentation/testing/defensive_testing_24.png) |
 | 25 | reviews/int:pk | DELETE | Instance author | Review deleted | Pass | ![defensivetest25](/documentation/testing/defensive_testing_25.png) |
+| 26 | announcement/ | GET | - | Returns a list of announcements | Pass | ![defensivetest26](/documentation/testing/defensive_testing_26.png) |
+| 27 | announcement/admin | GET | User | Access denied | Pass | ![defensivetest27](/documentation/testing/defensive_testing_27.png) |
+| 28 | announcement/admin | GET | Admin | Returns a list of announcements | Pass | ![defensivetest28](/documentation/testing/defensive_testing_28.png) |
+| 29 | announcement/admin | POST | User | Access denied | Pass | ![defensivetest29](/documentation/testing/defensive_testing_29.png) |
+| 30 | announcement/admin | POST | Admin | New announcement added | Pass | ![defensivetest30](/documentation/testing/defensive_testing_30.png) |
+| 31 | announcement/admin/int:pk | GET | User | Access denied | Pass | ![defensivetest31](/documentation/testing/defensive_testing_31.png) |
+| 32 | announcement/admin/int:pk | GET | Admin | Returns details of an announcement | Pass | ![defensivetest32](/documentation/testing/defensive_testing_32.png) |
+| 33 | announcement/admin/int:pk | PUT | User | Access denied | Pass | ![defensivetest33](/documentation/testing/defensive_testing_33.png) |
+| 34 | announcement/admin/int:pk | PUT | Admin | Announcement details updated | Pass | ![defensivetest34](/documentation/testing/defensive_testing_34.png) |
+| 35 | announcement/admin/int:pk | DELETE | User | Access denied | Pass | ![defensivetest35](/documentation/testing/defensive_testing_35.png) |
+| 36 | announcement/admin/int:pk | DELETE | Admin | Announcement deleted | Pass | ![defensivetest36](/documentation/testing/defensive_testing_36.png) |
 
 
 ## User Story Testing
