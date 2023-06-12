@@ -86,7 +86,14 @@ Defensive programming was manually tested using Postman to check the responses o
 | 34 | announcement/admin/int:pk | PUT | Admin | Announcement details updated | Pass | ![defensivetest34](/documentation/testing/defensive_testing_34.png) |
 | 35 | announcement/admin/int:pk | DELETE | User | Access denied | Pass | ![defensivetest35](/documentation/testing/defensive_testing_35.png) |
 | 36 | announcement/admin/int:pk | DELETE | Admin | Announcement deleted | Pass | ![defensivetest36](/documentation/testing/defensive_testing_36.png) |
-
+| 37 | ratings/ | GET | - | List of all ratings returned | Pass | ![defensivetest37](/documentation/testing/defensive_testing_37.png) |
+| 38 | ratings/ | POST | - | Access denied | Pass | ![defensivetest38](/documentation/testing/defensive_testing_38.png) |
+| 39 | ratings/ | POST | User | New rating created | Pass | ![defensivetest39](/documentation/testing/defensive_testing_39.png) |
+| 40 | ratings/int:pk | GET | Not instance author | Rating details returned | Pass | ![defensivetest40](/documentation/testing/defensive_testing_40.png) |
+| 41 | ratings/int:pk | PUT | Not instance author | Access denied | Pass | ![defensivetest41](/documentation/testing/defensive_testing_41.png) |
+| 42 | ratings/int:pk | PUT | Instance author | Rating updated | Pass | ![defensivetest42](/documentation/testing/defensive_testing_42.png) |
+| 43 | ratings/int:pk | DELETE | Not instance author | Access denied | Pass | ![defensivetest43](/documentation/testing/defensive_testing_43.png) |
+| 44 | ratings/int:pk | DELETE | Instance author | Rating deleted |  | ![defensivetest44](/documentation/testing/defensive_testing_44.png) |
 
 ## User Story Testing
 
