@@ -65,16 +65,16 @@ Defensive programming was manually tested using Postman to check the responses o
 | 13 | games/edit/int:pk | PUT | Admin | Game details edited | Pass | ![defensivetest13](/documentation/testing/defensive_testing_13.png) |
 | 14 | games/edit/int:pk | DELETE | User | Access denied | Pass | ![defensivetest14](/documentation/testing/defensive_testing_14.png) |
 | 15 | games/edit/int:pk | DELETE | Admin | Game instance is removed | Pass | ![defensivetest15](/documentation/testing/defensive_testing_15.png) |
-| 16 | reviews/ | GET | - | List of reviews returned | Pass |  |
-| 17 | reviews/ | POST | - | Access denied | Pass |  |
-| 18 | reviews/  | POST | User | Review instance created | Pass |  |
-| 18 | reviews/author | GET | - | Invalid request | Pass |  |
-| 18 | reviews/author | GET | User | Filtered list of reviews returned | Pass |  |
-| 19 | reviews/int:pk | GET | Not instance author | Accessing other user id's review allowed | Pass | |
-| 20 | reviews/int:pk | PUT | Not instance author | Access denied | Pass | |
-| 21 | reviews/int:pk | PUT | Instance author | Review updated | Pass | |
-| 22 | reviews/int:pk | DELETE | Not instance author | Access denied | Pass | |
-| 23 | reviews/int:pk | DELETE | Instance author | Review deleted | Pass | |
+| 16 | reviews/ | GET | - | List of reviews returned | Pass | ![defensivetest16](/documentation/testing/defensive_testing_16.png) |
+| 17 | reviews/ | POST | - | Access denied | Pass | ![defensivetest17](/documentation/testing/defensive_testing_17.png) |
+| 18 | reviews/  | POST | User | Review instance created | Pass | ![defensivetest18](/documentation/testing/defensive_testing_18.png) |
+| 19 | reviews/author | GET | - | Invalid request | Pass | ![defensivetest19](/documentation/testing/defensive_testing_19.png) |
+| 20 | reviews/author | GET | User | Filtered list of reviews returned | Pass | ![defensivetest20](/documentation/testing/defensive_testing_20.png) |
+| 21 | reviews/int:pk | GET | Not instance author | Accessing other user id's review allowed | Pass | ![defensivetest21](/documentation/testing/defensive_testing_21.png) |
+| 22 | reviews/int:pk | PUT | Not instance author | Access denied | Pass | ![defensivetest22](/documentation/testing/defensive_testing_22.png) |
+| 23 | reviews/int:pk | PUT | Instance author | Review updated | Pass | ![defensivetest23](/documentation/testing/defensive_testing_23.png) |
+| 24 | reviews/int:pk | DELETE | Not instance author | Access denied | Pass | ![defensivetest24](/documentation/testing/defensive_testing_24.png) |
+| 25 | reviews/int:pk | DELETE | Instance author | Review deleted | Pass | ![defensivetest25](/documentation/testing/defensive_testing_25.png) |
 
 
 ## User Story Testing
