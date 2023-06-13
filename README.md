@@ -20,6 +20,8 @@ The deployed API can be viewed [here](https://dinogames-api.herokuapp.com/)
 * It will allow staff members to edit the library game details
 * It should allow staff members to post news and events announcements
 * It should allow site visitors to view news and events announcements that have been posted
+* It could allow staff members to post detailed social event invitations
+* It could allow registered members to list the games they would like to be available to play at social events
 
 Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/5/views/1?reload=true). Any remaining features outside of this project's timeframe will be moved to 'won't have', and in production would become part of the next release or future features.
 
