@@ -36,8 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', 'dinogames-api.herokuapp.com',
-                 '8000-ccp84-dinogamesapi-b7sikjpr5mz.ws-eu99.gitpod.io']
+ALLOWED_HOSTS = ['localhost', 'dinogames-api.herokuapp.com']
 
 
 # Application definition
@@ -159,9 +158,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
-        "rest_framework.authentication.SessionAuthentication"
-        if "DEV" in os.environ
-        else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
+        # "rest_framework.authentication.SessionAuthentication"
+        # if "DEV" in os.environ
+        # else
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
     )]
 }
 
