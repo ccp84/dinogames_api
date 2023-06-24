@@ -150,9 +150,17 @@ To see the HTML version of the reports, and find out whether some pieces of code
 
 Below are the results from the tests that I have created:
 
-| File | Coverage | Screenshot |
+| App | Coverage | Screenshot |
 | --- | --- | --- |
+| Announcements | 98% | ![announcements](/documentation/testing/coverage_anouncements.png) |
+| Games | 97% | ![games](/documentation/testing/coverage_games.png) |
+| Ratings | 94% | ![ratings](/documentation/testing/coverage_ratings.png) |
+| Reviews | 98% | ![reviews](/documentation/testing/coverage_reviews.png) |
+| Users | 98% | ![users](/documentation/testing/coverage_users.png) |
+| ----- | ----| -----|
+| Overall | 97% | ![overall](/documentation/testing/coverage_overall.png) |
 
 #### Unit Test Issues
+I had difficulty with authentication during testing so the gaps in coverage all require a client login. I have removed the failing tests from the testing files. I am confident that my extensive manual testing of both back-end and front-end has covered the missing elements of automated testing. 
 
 Return to the [README.md](README.md) file.

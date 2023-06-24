@@ -507,6 +507,7 @@ You can fork this repository by using the following steps:
 ### Libraries included in this project
 
 * cloudinary
+* coverage
 * dj-database-url
 * dj-rest-auth
 * django-allauth
