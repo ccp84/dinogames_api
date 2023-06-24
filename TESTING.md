@@ -161,6 +161,37 @@ Below are the results from the tests that I have created:
 | Overall | 97% | ![overall](/documentation/testing/coverage_overall.png) |
 
 #### Unit Test Issues
-I had difficulty with authentication during testing so the gaps in coverage all require a client login. I have removed the failing tests from the testing files. I am confident that my extensive manual testing of both back-end and front-end has covered the missing elements of automated testing. 
+I had difficulty with authentication during testing so the gaps in coverage all require a client login. I am confident that my extensive manual testing of both back-end and front-end has covered the missing elements of automated testing.
+
+I have removed the following failing tests that I did not manage to get working:
+
+* Announcements 
+```python
+    def test_create_news(self):
+        test_user2 = CustomUser.objects.create_superuser(
+            username='testuser2', password='testpass2', firstname='test', lastname='name', email='mail@mail.co')
+        self.client.login(username="testuser2", password="testpass2")
+        response = self.client.post('/announcement/admin', {
+            'category': 1, 'title': 'title2', 'content': 'content2'})
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+```
+
+* Ratings
+```python
+    def test_author_permissions(self):
+        logged_in = self.client.login(
+            username='testuser2', password='testpass2')
+        response = self.client.post(
+            '/ratings/', {'game': 1, 'rating': False})
+        self.assertEqual(logged_in, True)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+```
+
+* Users
+```python
+    def test_validate_user(self):
+        self.assertRaises('ValidationError', CustomUser.objects.create_user, username='newuser', password1='newpass1!',
+                          password2='newpass2!', email='mail@mail.co', firstname='name', lastname='last')
+```
 
 Return to the [README.md](README.md) file.
