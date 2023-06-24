@@ -21,14 +21,6 @@ class Test_Create_Announcement(APITestCase):
         self.assertEqual(str(announcement), "title1")
         self.assertEqual(str(category), "news")
 
-    # def test_create_news(self):
-    #     test_user2 = CustomUser.objects.create_superuser(
-    #         username='testuser2', password='testpass2', firstname='test', lastname='name', email='mail@mail.co')
-    #     self.client.login(username="testuser2", password="testpass2")
-    #     response = self.client.post('/announcement/admin', {
-    #         'category': 1, 'title': 'title2', 'content': 'content2'})
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
     def test_get_news(self):
         self.client.login(username="testuser", password="testpass1")
         response = self.client.get('/announcement/')

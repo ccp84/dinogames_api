@@ -21,14 +21,6 @@ class Test_Create_Rating(APITestCase):
         self.assertEqual(
             str(rating), "testuser1 testgame")
 
-    # def test_author_permissions(self):
-    #     logged_in = self.client.login(
-    #         username='testuser2', password='testpass2')
-    #     response = self.client.post(
-    #         '/ratings/', {'game': 1, 'rating': False})
-    #     self.assertEqual(logged_in, True)
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
     def test_validation_error(self):
         self.assertRaisesMessage(expected_exception='ValidationError',
                                  expected_message='You can only rate a game once', args=Rating.objects.create, game_id=1, author_id=1, rating=True)

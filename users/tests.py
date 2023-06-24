@@ -33,7 +33,3 @@ class Test_Create_Users(APITestCase):
         response = self.client.post('/dj-rest-auth/registration/', {'username': 'newuser', 'password1': 'newpass1!',
                                                                     'password2': 'newpass1!', 'email': 'mail@mail.co', 'firstname': 'name', 'lastname': 'last'})
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-    # def test_validate_user(self):
-    #     self.assertRaises('ValidationError', CustomUser.objects.create_user, username='newuser', password1='newpass1!',
-    #                       password2='newpass2!', email='mail@mail.co', firstname='name', lastname='last')
